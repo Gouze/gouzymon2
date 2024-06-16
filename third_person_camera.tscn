@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmbn348perwrl"]
+
+[ext_resource type="Script" path="res://ThirdPersonCamera.cs" id="1_pco32"]
+
+[node name="ThirdPersonCamera" type="Node3D"]
+script = ExtResource("1_pco32")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.52803)

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dasmtwoy02h24"]
+
+[ext_resource type="PackedScene" uid="uid://tk5t87wa2t5f" path="res://player_character.tscn" id="1_s6kfc"]
+[ext_resource type="PackedScene" uid="uid://cmbn348perwrl" path="res://third_person_camera.tscn" id="2_sgiax"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7y8nt"]
+size = Vector3(20.7158, 0.21875, 28.2949)
+
+[sub_resource type="BoxMesh" id="BoxMesh_25df5"]
+size = Vector3(20.7158, 0.21875, 28.2949)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45a4v"]
+albedo_color = Color(0.298039, 0.435294, 0.0941176, 1)
+
+[node name="Main" type="Node"]
+
+[node name="Player Character" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("1_s6kfc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.741828, 0)
+speed = 0.1
+camera = NodePath("ThirdPersonCamera")
+
+[node name="ThirdPersonCamera" parent="Player Character" instance=ExtResource("2_sgiax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129116, 0)
+sensitivity = 500.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.930539, 0.177344, -0.320385, 0, 0.874907, 0.484291, 0.366193, -0.450651, 0.814135, 0, 2.19516, 5.27537)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00932872, 0)
+shape = SubResource("BoxShape3D_7y8nt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_25df5")
+surface_material_override/0 = SubResource("StandardMaterial3D_45a4v")
